@@ -2,17 +2,17 @@ package TTT;
 
 public class GameLogic {
     public static char[][] board = new char[3][3];
-    private static char lastMove = 'O';
+    public static char lastMove = 'O';
     public static boolean end = false;
 
     public static char nextPlayer() {
         if(lastMove == 'O')
         {
-            lastMove = 'O';
+            lastMove = 'X';
             return 'X';
         } else
         {
-            lastMove = 'X';
+            lastMove = 'O';
             return 'O';
         }
 
@@ -33,22 +33,39 @@ public class GameLogic {
         for(int i=0; i<3; i++)
         {
             if(board[i][0] == currentPlayer() && board[i][1] == currentPlayer() && board[i][2] == currentPlayer())
-                return currentPlayer();
+                end = true;
             if(board[0][i] == currentPlayer() && board[i][1] == currentPlayer() && board[i][2] == currentPlayer())
-                return currentPlayer();
+                end = true;
         }
         if(board[0][0] == currentPlayer() && board[1][1] == currentPlayer() && board[2][2] == currentPlayer())
-            return currentPlayer();
+            end = true;
         if(board[2][0] == currentPlayer() && board[1][1] == currentPlayer() && board[0][2] == currentPlayer())
+            end = true;
+        if(end)
             return currentPlayer();
+
         return 'N';
     }
 
     public static char move(int x, int y){
-        return 0;
+        if(isOccupied(x,y))
+            return 'N';
+        board[x][y] = nextPlayer();
+        checkWinner();
+        return currentPlayer();
     }
 
     public static void clearBoard(){
+        for(int i = 0; i<3; i++ ){
+            for(int j =0; j<3; j++){
+                board[i][j]=' ';
+            }
+        }
+    }
 
+    public static void restartGame() {
+    clearBoard();
+    end=false;
+    lastMove='O';
     }
 }

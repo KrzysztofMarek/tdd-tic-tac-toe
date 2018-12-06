@@ -35,6 +35,7 @@ public class GameLogicTests {
         GameLogic.board[0][0]=' ';
         GameLogic.board[1][1]=' ';
         GameLogic.board[2][2]=' ';
+        GameLogic.end=false;
     }
 
     @Test
@@ -49,6 +50,7 @@ public class GameLogicTests {
     @Test
     public void moveNoWinnerTest() {
         char expected = 'X';
+        GameLogic.lastMove = 'O';
         char result = GameLogic.move(1,1);
         assertEquals(expected,result);
         GameLogic.board[1][1]=' ';
@@ -64,12 +66,23 @@ public class GameLogicTests {
         char result = GameLogic.move(0,2);
         assertEquals(expected,result);
         assertTrue(GameLogic.end);
+        GameLogic.clearBoard();
+        GameLogic.end=false;
     }
 
     @Test
     public void clearBoardTest() {
         GameLogic.board[1][1] = 'X';
         GameLogic.clearBoard();
+        assertEquals(' ', GameLogic.board[1][1]);
+    }
+
+    @Test
+    public void restartGameTest() {
+        GameLogic.board[1][1]='X';
+        GameLogic.restartGame();
+        assertFalse(GameLogic.end);
+        assertEquals('O', GameLogic.lastMove);
         assertEquals(' ', GameLogic.board[1][1]);
     }
 }
