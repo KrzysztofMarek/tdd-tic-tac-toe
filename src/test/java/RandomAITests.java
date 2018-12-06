@@ -17,6 +17,11 @@ public class RandomAITests {
         assertTrue(RandomAI.isOccupied(4));
         GameLogic.board[1][1]=' ';
     }
+
+    @Test
+    public void isOccupiedNegativeTest(){
+        assertFalse(RandomAI.isOccupied(4));
+    }
 }
 
 
