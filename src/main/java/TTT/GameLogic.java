@@ -3,6 +3,7 @@ package TTT;
 public class GameLogic {
     public static char[][] board = new char[3][3];
     private static char lastMove = 'O';
+    public static boolean end = false;
 
     public static char nextPlayer() {
         if(lastMove == 'O')
@@ -43,4 +44,11 @@ public class GameLogic {
         return 'N';
     }
 
+    public static char move(int x, int y){
+        return 0;
+    }
+
+    public static void clearBoard(){
+
+    }
 }
