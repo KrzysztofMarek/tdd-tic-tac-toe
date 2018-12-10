@@ -20,13 +20,13 @@ public class RandomAITests {
 
     @Test
     public void isOccupiedNegativeTest(){
-        GameLogic.clearBoard();
+        GameLogic.restartGame();
         assertFalse(RandomAI.isOccupied(4));
     }
 
     @Test
     public void randomMoveNoWinnerTest() {
-        GameLogic.clearBoard();
+        GameLogic.restartGame();
         GameLogic.move(1,1);
 
         assertEquals('O',RandomAI.randomMove());
@@ -36,7 +36,7 @@ public class RandomAITests {
 
     @Test
     public void randomMoveWinnerTest() {
-        GameLogic.clearBoard();
+        GameLogic.restartGame();
         GameLogic.move(0,0);
         GameLogic.board[0][1]='X';
         GameLogic.board[0][2]='O';
@@ -47,7 +47,7 @@ public class RandomAITests {
         GameLogic.board[2][2]='O';
         assertEquals('O',RandomAI.randomMove());
         assertTrue(GameLogic.end);
-        GameLogic.clearBoard();
+        GameLogic.restartGame();
     }
 }
 
