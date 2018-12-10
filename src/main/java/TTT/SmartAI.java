@@ -153,4 +153,22 @@ public class SmartAI {
         }
         return new int[] {-10, -10};
     }
+    public static char smartMove() {
+        int[] result;
+        result = findWinningMove();
+        if(result[0]!=-1)
+            return GameLogic.move(result[0],result[1]);
+        else{
+            result=findPreventingMove();
+            if(result[0]!=-1)
+                return GameLogic.move(result[0],result[1]);
+            else{
+                result=findGoodMove();
+                if(result[0]!=-10)
+                    return GameLogic.move(result[0],result[1]);
+                else
+                    return 'N';
+            }
+        }
+    }
 }
