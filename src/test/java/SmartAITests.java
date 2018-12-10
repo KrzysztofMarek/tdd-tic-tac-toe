@@ -76,4 +76,66 @@ public class SmartAITests {
         int[] expected = {0,1};
         assertArrayEquals(expected, result);
     }
+    @Test
+    public void smartMoveWinningTest() {
+        GameLogic.restartGame();
+        GameLogic.move(0,0);
+        GameLogic.move(2,0);
+        GameLogic.move(0,1);
+        GameLogic.move(2,1);
+        GameLogic.move(1,0);
+        char result = SmartAI.smartMove();
+        char expected = 'O';
+        assertEquals(expected, result);
+        assertTrue(GameLogic.end);
+    }
+    @Test
+    public void smartMovePreventingTest() {
+        GameLogic.restartGame();
+        GameLogic.move(0,0);
+        GameLogic.move(2,0);
+        GameLogic.move(0,1);
+        char result = SmartAI.smartMove();
+        char expected = 'O';
+        assertEquals(expected, result);
+        assertFalse(GameLogic.end);
+    }
+    @Test
+    public void smartMoveMiddleTest(){
+        GameLogic.restartGame();
+        GameLogic.move(0,0);
+        char result = SmartAI.smartMove();
+        char expected = 'O';
+        assertEquals(expected, result);
+        assertEquals('O', GameLogic.board[1][1]);
+        assertFalse(GameLogic.end);
+    }
+    @Test
+    public void smartMoveCornerTest(){
+        GameLogic.restartGame();
+        GameLogic.move(1,1);
+        GameLogic.move(0,0);
+        GameLogic.move(2,2);
+        char result = SmartAI.smartMove();
+        char expected = 'O';
+        assertEquals(expected, result);
+        assertEquals('O', GameLogic.board[0][2]);
+        assertFalse(GameLogic.end);
+    }
+    @Test
+    public void smartMoveBorderTest(){
+        GameLogic.restartGame();
+        GameLogic.move(1,1);
+        GameLogic.move(0,0);
+        GameLogic.move(2,2);
+        GameLogic.move(2,0);
+        GameLogic.move(1,0);
+        GameLogic.move(1,2);
+        GameLogic.move(0,2);
+        char result = SmartAI.smartMove();
+        char expected = 'O';
+        assertEquals(expected, result);
+        assertEquals('O', GameLogic.board[0][1]);
+        assertFalse(GameLogic.end);
+    }
 }
