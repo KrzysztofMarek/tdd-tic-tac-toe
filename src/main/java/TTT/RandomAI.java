@@ -3,9 +3,9 @@ package TTT;
 import java.util.Random;
 
 public class RandomAI {
-    public static char randomMove(){
+    public static int[] randomMove(){
         int random = generateRandom();
-        return GameLogic.move(random/3, random%3);
+        return new int[] {(int) GameLogic.move(random/3, random%3), random/3, random%3};
     }
     public static boolean isOccupied(int x) {
         if(GameLogic.board[x/3][x%3] == 'X' || GameLogic.board[x/3][x%3] == 'O'  )

@@ -84,7 +84,7 @@ public class SmartAITests {
         GameLogic.move(0,1);
         GameLogic.move(2,1);
         GameLogic.move(1,0);
-        char result = SmartAI.smartMove();
+        char result = (char)SmartAI.smartMove()[0];
         char expected = 'O';
         assertEquals(expected, result);
         assertTrue(GameLogic.end);
@@ -95,7 +95,7 @@ public class SmartAITests {
         GameLogic.move(0,0);
         GameLogic.move(2,0);
         GameLogic.move(0,1);
-        char result = SmartAI.smartMove();
+        char result = (char)SmartAI.smartMove()[0];
         char expected = 'O';
         assertEquals(expected, result);
         assertFalse(GameLogic.end);
@@ -104,7 +104,7 @@ public class SmartAITests {
     public void smartMoveMiddleTest(){
         GameLogic.restartGame();
         GameLogic.move(0,0);
-        char result = SmartAI.smartMove();
+        char result = (char)SmartAI.smartMove()[0];
         char expected = 'O';
         assertEquals(expected, result);
         assertEquals('O', GameLogic.board[1][1]);
@@ -116,7 +116,7 @@ public class SmartAITests {
         GameLogic.move(1,1);
         GameLogic.move(0,0);
         GameLogic.move(2,2);
-        char result = SmartAI.smartMove();
+        char result = (char)SmartAI.smartMove()[0];
         char expected = 'O';
         assertEquals(expected, result);
         assertEquals('O', GameLogic.board[0][2]);
@@ -132,7 +132,7 @@ public class SmartAITests {
         GameLogic.move(1,0);
         GameLogic.move(1,2);
         GameLogic.move(0,2);
-        char result = SmartAI.smartMove();
+        char result = (char)SmartAI.smartMove()[0];
         char expected = 'O';
         assertEquals(expected, result);
         assertEquals('O', GameLogic.board[0][1]);

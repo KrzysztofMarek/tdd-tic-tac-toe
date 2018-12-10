@@ -29,7 +29,7 @@ public class RandomAITests {
         GameLogic.restartGame();
         GameLogic.move(1,1);
 
-        assertEquals('O',RandomAI.randomMove());
+        assertEquals('O',(char)RandomAI.randomMove()[0]);
         assertFalse(GameLogic.end);
         GameLogic.clearBoard();
     }
@@ -45,7 +45,7 @@ public class RandomAITests {
         GameLogic.board[2][1]='X';
         GameLogic.board[2][0]='X';
         GameLogic.board[2][2]='O';
-        assertEquals('O',RandomAI.randomMove());
+        assertEquals('O',(char)RandomAI.randomMove()[0]);
         assertTrue(GameLogic.end);
         GameLogic.restartGame();
     }

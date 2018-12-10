@@ -35,7 +35,7 @@ public class GameLogic {
         {
             if(board[i][0] == currentPlayer() && board[i][1] == currentPlayer() && board[i][2] == currentPlayer())
                 end = true;
-            if(board[0][i] == currentPlayer() && board[i][1] == currentPlayer() && board[i][2] == currentPlayer())
+            if(board[0][i] == currentPlayer() && board[1][i] == currentPlayer() && board[2][i] == currentPlayer())
                 end = true;
         }
         if(board[0][0] == currentPlayer() && board[1][1] == currentPlayer() && board[2][2] == currentPlayer())
@@ -54,8 +54,6 @@ public class GameLogic {
         board[x][y] = nextPlayer();
         checkWinner();
         moves++;
-        if(moves==9)
-            end=false;
         return currentPlayer();
     }
 

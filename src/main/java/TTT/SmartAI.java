@@ -153,21 +153,21 @@ public class SmartAI {
         }
         return new int[] {-10, -10};
     }
-    public static char smartMove() {
+    public static int[] smartMove() {
         int[] result;
         result = findWinningMove();
         if(result[0]!=-1)
-            return GameLogic.move(result[0],result[1]);
+            return new int[] {(int)GameLogic.move(result[0],result[1]), result[0], result[1]};
         else{
             result=findPreventingMove();
             if(result[0]!=-1)
-                return GameLogic.move(result[0],result[1]);
+                return new int[] {(int)GameLogic.move(result[0],result[1]), result[0], result[1]};
             else{
                 result=findGoodMove();
                 if(result[0]!=-10)
-                    return GameLogic.move(result[0],result[1]);
+                    return new int[] {(int)GameLogic.move(result[0],result[1]), result[0], result[1]};
                 else
-                    return 'N';
+                    return new int[] {(int)'N',-1,-1};
             }
         }
     }

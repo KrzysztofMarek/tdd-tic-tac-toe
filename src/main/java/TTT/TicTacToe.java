@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class TicTacToe extends JPanel {
     JButton buttons[] = new JButton[9];
-    int difficulty=1;
+    public static int difficulty=1;
 
     public TicTacToe()
     {
@@ -43,25 +43,58 @@ public class TicTacToe extends JPanel {
                         position=i;
                     }
             }
-            System.out.println(position);
             JButton buttonClicked = (JButton) e.getSource();
             if(!GameLogic.end)
             {
                 switch (difficulty){
                     case 1:{//PvP
-                        System.out.println(position);
                         char result = GameLogic.move(position/3, position%3);
                         if(result!='N'){
                             buttonClicked.setText(String.valueOf(result));
                             if(GameLogic.end)
-                                JOptionPane.showConfirmDialog(null, "Player"+result+"won!");
+                                JOptionPane.showConfirmDialog(null, "Player "+ result + " won!");
                         }
 
                     }
                     case 2:{//PvRandomAI
+                        char result = GameLogic.move(position/3, position%3);
+                        if(result!='N'){
+                            buttonClicked.setText(String.valueOf(result));
+                            if(GameLogic.end)
+                                JOptionPane.showConfirmDialog(null, "Player "+ result + " won!");
+                            else if(GameLogic.moves<9){
+                                int[] AImove = RandomAI.randomMove();
+                                if((char)AImove[0]!='N'){
+                                    buttons[AImove[1]*3+AImove[2]].setText(String.valueOf((char)AImove[0]));
+                                    if(GameLogic.end)
+                                        JOptionPane.showConfirmDialog(null, "The Computer won!");
+                                }
+                            } else
+                            {
+                                JOptionPane.showConfirmDialog(null, "No winner! Try again");
+                            }
+                        }
 
                     }
                     case 3:{//PvSmartAI
+                        char result = GameLogic.move(position/3, position%3);
+                        if(result!='N'){
+                            buttonClicked.setText(String.valueOf(result));
+                            if(GameLogic.end)
+                                JOptionPane.showConfirmDialog(null, "Player "+ result + " won!");
+                            else if(GameLogic.moves<9){
+                                int[] AImove = SmartAI.smartMove();
+                                if((char)AImove[0]!='N'){
+                                    buttons[AImove[1]*3+AImove[2]].setText(String.valueOf((char)AImove[0]));
+                                    if(GameLogic.end)
+                                        JOptionPane.showConfirmDialog(null, "The Computer won!");
+                                }
+                            } else
+                            {
+                                JOptionPane.showConfirmDialog(null, "No winner! Try again");
+                            }
+                        }
+
 
                     }
                 }
@@ -73,11 +106,8 @@ public class TicTacToe extends JPanel {
 
     public static void main(String[] args)
     {
-        GameLogic.restartGame();
-        JFrame window = new JFrame("Tic-Tac-Toe");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().add(new TicTacToe());
-        window.setBounds(300,200,300,300);
-        window.setVisible(true);
+        GameMenu gameMenu = new GameMenu();
+        gameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameMenu.setVisible(true);
     }
 }
