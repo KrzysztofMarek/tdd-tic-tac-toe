@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameMenu extends JFrame{
+public class GameMenu extends JFrame {
     private JButton playButton;
     private JPanel panel1;
     private JRadioButton radioButtonPvSAI;
     private JRadioButton radioButtonPvRAI;
     private JRadioButton radioButtonPvP;
 
-    public GameMenu(){
+    public GameMenu() {
         add(panel1);
         setTitle("Tic Tac Toe Menu");
         radioButtonPvP.setSelected(true);
@@ -24,37 +24,37 @@ public class GameMenu extends JFrame{
                 JFrame window = new JFrame("Tic-Tac-Toe");
                 window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 window.getContentPane().add(new TicTacToe());
-                window.setBounds(300,200,300,300);
+                window.setBounds(300, 200, 300, 300);
                 window.setVisible(true);
             }
         });
         radioButtonPvSAI.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(radioButtonPvSAI.isSelected()){
+                if (radioButtonPvSAI.isSelected()) {
                     radioButtonPvP.setSelected(false);
                     radioButtonPvRAI.setSelected(false);
-                    TicTacToe.difficulty=3;
+                    TicTacToe.difficulty = 3;
                 }
             }
         });
         radioButtonPvRAI.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(radioButtonPvRAI.isSelected()){
+                if (radioButtonPvRAI.isSelected()) {
                     radioButtonPvP.setSelected(false);
                     radioButtonPvSAI.setSelected(false);
-                    TicTacToe.difficulty=2;
+                    TicTacToe.difficulty = 2;
                 }
             }
         });
         radioButtonPvP.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(radioButtonPvP.isSelected()){
+                if (radioButtonPvP.isSelected()) {
                     radioButtonPvRAI.setSelected(false);
                     radioButtonPvSAI.setSelected(false);
-                    TicTacToe.difficulty=1;
+                    TicTacToe.difficulty = 1;
                 }
             }
         });
