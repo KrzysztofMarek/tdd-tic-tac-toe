@@ -4,6 +4,7 @@ public class GameLogic {
     public static char[][] board = new char[3][3];
     public static char lastMove = 'O';
     public static boolean end = false;
+    public static int moves = 0;
 
     public static char nextPlayer() {
         if(lastMove == 'O')
@@ -52,6 +53,9 @@ public class GameLogic {
             return 'N';
         board[x][y] = nextPlayer();
         checkWinner();
+        moves++;
+        if(moves==9)
+            end=false;
         return currentPlayer();
     }
 
@@ -67,5 +71,6 @@ public class GameLogic {
     clearBoard();
     end=false;
     lastMove='O';
+    moves=0;
     }
 }
